@@ -2,13 +2,9 @@ import MongoClient from 'mongodb';
 
 const url = "mongodb+srv://JessicaGray:KVLPnFGHN72uqoo6@cluster0.yuzwq.mongodb.net";
 
-const p = {                
-    "firstName" : "Lebron",
-    "lastName" : "James",
-    "favoriteColor" : "Blue"
-}
+const person = {"_id":{"$oid":"6068c8e868af533c14a25ee5"},"firstName":"Lebron","lastName":"James","favoriteColor":"Blue"};
 
-class Database {
+export default class Database {
     constructor() {
         this.connection = null;
         this.database = null;
@@ -19,26 +15,24 @@ class Database {
         this.connection = await MongoClient.connect(url, { useUnifiedTopology: true });
         this.database = this.connection.db("lab10");
         this.collection = this.database.collection("people");
-}
+    }
 
     async createOne() {
         if(this.collection != null) {
-            return await this.collection.insertOne(p);
+            return await this.collection.insertOne(person);
         }
     }
-    
+
     async readOne() {
-        let result = await collection.findOne (p);
-        result.forEach(document=>{
-            console.log(document);
-        });
+        if(this.collection != null) {
+            return await collection.findOne(person);
+        }
     }
-    
+
     close() {
         if(this.collection != null) {
-          this.connection.close();
+        this.collection.close();
         }
-      }
-}
+    }
 
-export default Database;
+}
