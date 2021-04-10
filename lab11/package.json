@@ -1,0 +1,17 @@
+{
+  "name": "lab11",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently 'cd server && npm run server' 'cd client && npm run start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.0.1",
+    "mongodb": "^3.6.6"
+  },
+  "type": "module"
+}
