@@ -35,7 +35,7 @@ export default function GetUserRequest() {
           (loading !== null) ? (
             <div>
                 <p><u>DELETE request has been sent:</u> <br></br>
-                    Title: {ISBN}</p>
+                    ISBN: {ISBN}</p>
             </div>
           ) : (
             <div>
