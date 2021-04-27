@@ -13,9 +13,10 @@ export default function PutUserRequest() {
         setLoading(null);
 
         const bookInfo = {
-            params: {
-                ISBN: ISBN
-            },
+            ISBN: ISBN,
+            title: title,
+            author: author,
+            description: description
         };
 
         await Axios.put("http://localhost:45030/books/", bookInfo)

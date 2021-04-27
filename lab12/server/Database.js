@@ -18,7 +18,7 @@ export default class Database {
     async createOne(ISBN, title, author, description) {
         const result = await this.collection.insertOne({"ISBN": ISBN, "title": title, "author": author, "description": description});
         if(result !== null) {
-            return {ISBN, title, author, description};
+            return {"book created!": {ISBN, title, author, description}};
         } else {
             return null;
         }

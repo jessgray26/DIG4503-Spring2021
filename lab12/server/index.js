@@ -14,7 +14,7 @@ d.connect();
 // User Adds book to database
 App.put("/books/", async(req, res) => {
 
-    const ISBN = req.query.ISBN;
+    const ISBN = req.body.ISBN;
     const title = req.body.title;
     const author = req.body.author;
     const description = req.body.description;
