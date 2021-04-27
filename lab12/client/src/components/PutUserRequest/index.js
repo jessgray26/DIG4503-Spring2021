@@ -8,6 +8,7 @@ export default function PutUserRequest() {
     const [author, setAuthor] = useState("");
     const [description, setDescription] = useState("");
     const [loading, setLoading] = useState(null);
+    const [books, setBooks] = useState([]);
 
     const putBook = async () => {
         setLoading(null);
@@ -20,11 +21,9 @@ export default function PutUserRequest() {
         };
 
         await Axios.put("http://localhost:45030/books/", bookInfo)
+
         .then((res) => {
-            setISBN(ISBN);
-            setTitle(title);
-            setAuthor(author);
-            setDescription(description);
+            setBooks([res.data])
             console.log( "Data has been received!", res.data);
             setLoading(!null);
         })
@@ -32,8 +31,21 @@ export default function PutUserRequest() {
             console.log(error);
             setLoading(null);
         });
-
     };
+
+    const renderPutBooks = () => {
+        return books.map((book, key) => {
+            return (
+                <div key={key}>
+                    You sent the following PUT request.
+                    <p>ISBN: {book.ISBN}</p>
+                    <p>Title: {book.title}</p>
+                    <p>Author: {book.author}</p>
+                    <p>Description: {book.description}</p>
+                </div>
+            )
+        })
+    }
 
     return (
         <div>
@@ -43,13 +55,9 @@ export default function PutUserRequest() {
             <input type="text" placeholder="Description..." onChange={(event) => {setDescription(event.target.value);}} /><br></br>
             <button onClick={() => {putBook()}}>Put</button>
             {
-                (loading !== null) ? (
+                (loading === !null) ? (
                     <div>
-                        <p><u>PUT request has been sent:</u><br></br> 
-                            ISBN: {ISBN}, <br></br>
-                            Title: {title}, <br></br>
-                            Author: {author}, <br></br> 
-                            Description: {description}</p>
+                        <p>{renderPutBooks()}</p>
                     </div>
                     ) : (
                     <div>

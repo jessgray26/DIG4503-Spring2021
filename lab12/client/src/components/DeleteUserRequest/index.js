@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { useState } from 'react';
 
-export default function GetUserRequest() {
+export default function DeleteUserRequest() {
 
     const [ISBN, setISBN] = useState("");
     const [loading, setLoading] = useState(null);
@@ -10,7 +10,7 @@ export default function GetUserRequest() {
         setLoading(null);
         const getInfo = {
             params: {
-                ISBN: ISBN
+                ISBN: ISBN,
             }
         };
 
@@ -34,8 +34,7 @@ export default function GetUserRequest() {
             {
           (loading !== null) ? (
             <div>
-                <p><u>DELETE request has been sent:</u> <br></br>
-                    ISBN: {ISBN}</p>
+                <p><u>DELETE request has been sent!</u></p>
             </div>
           ) : (
             <div>

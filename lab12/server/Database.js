@@ -18,7 +18,7 @@ export default class Database {
     async createOne(ISBN, title, author, description) {
         const result = await this.collection.insertOne({"ISBN": ISBN, "title": title, "author": author, "description": description});
         if(result !== null) {
-            return {"book created!": {ISBN, title, author, description}};
+            return {ISBN, title, author, description};
         } else {
             return null;
         }
@@ -27,7 +27,7 @@ export default class Database {
     async readOne(ISBN) {
         const result = await this.collection.findOne({"ISBN": ISBN});
         if(result !== null) {
-            return {"book found!": result};
+            return result;
         } else {
             return {"book": "not found"};
         };
@@ -36,7 +36,7 @@ export default class Database {
     async deleteOne(ISBN){
         const result = await this.collection.deleteOne({"ISBN": ISBN});
         if(result !== null) {
-            return {"books": result.deletedCount};
+            return result.deletedCount;
         } else {
             return {"books": "delete unsuccessful!"};
         };
